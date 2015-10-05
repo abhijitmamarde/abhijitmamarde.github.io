@@ -1,0 +1,217 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Data Fixtures &amp; web2py </title>
+
+    <link rel="canonical" href="http://localhost:1313/post/using_data_fixtures_in_Web2Py/">
+    
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+
+    
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    
+    
+    
+
+    <link rel="stylesheet" href="/styles/monokai.css">
+    <script src="/js/highlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Abhijit&#39;s Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/index.html">Home</a>
+                </li>
+                <li>
+                    <a href="/pages/about/">About</a>
+                </li>
+                <li>
+                    <a href="/pages/contact/">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    
+    
+    
+    <header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Data Fixtures &amp; web2py</h1>
+                        <hr class="small">
+                        <span class="subheading">Sat Mar 28, 2015</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="container">
+        
+        <div class="row">
+        <a href="/posts" title="Blog">Blog Posts</a>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><a href="http://thadeusb.com/weblog/2010/4/21/using_fixtures_in_web2py">URL</a></p>
+
+<p>So you are ready to deploy your newly finished web2py app, but you don&rsquo;t like the idea of having to manually insert all of this fixture data again!</p>
+
+<p>Create a new model, and name it <code>x_fixtures.py</code>. This way it will execute after all of your models.</p>
+
+<p>Then for every table that you want to pre-populate use the following snippet. I will use an example for the auth_user table to pre-create a test user.</p>
+
+<pre><code>if db(db.auth_user.id &gt; 0).count() == 0:
+    db.auth_user.insert(
+        first_name='Testers',
+        last_name='Inc',
+        email='test@user.com',
+        password='&lt;include a pre-encrypted password here&gt;',
+    )
+</code></pre>
+
+<p>Basically, if we have no records in the table, insert the defaults! This is probably more useful in situations where you have pre-defined data that can be dynamic, such as a list of status codes.</p>
+
+<pre><code>if db(db.status.id &gt; 0).count() == 0:
+   db.status.insert(name='pending', kkey='P')
+   db.status.insert(name='processing', kkey='R')
+   db.status.insert(name='done', kkey='D')
+</code></pre>
+
+<p>You can easily keep your data fixtures in a YAML file and load them into the database by using the <code>pyyaml</code> library.</p>
+
+<p>Here is the example YAML file for what we just inserted.</p>
+
+<pre><code>auth_user:
+    - first_name: Testers
+      last_name: Inc
+      email: test@user.com
+      password: &lt;include a pre-encrypted password here&gt;
+status:
+    - name: In-Queue
+      kkey: Q
+    - name: Pending
+      kkey: P
+    - name: Processing
+      kkey: R
+    - name: Done
+      kkey: D
+</code></pre>
+
+<p>We just open the file, pass this to <code>pyyaml</code>, and insert into the database, easy right?</p>
+
+<pre><code>import yaml
+
+data = yaml.load(open('/path/to/applications/myapp/private/fixtures.yaml'))
+
+for table_name, rows in data:
+    for r in rows:
+        db[table_name].insert(
+            **r
+        )
+</code></pre>
+
+<p>Video on Generate web2py model by using yaml -&gt; <a href="http://vimeo.com/10837176">http://vimeo.com/10837176</a></p>
+
+<p>Now you have gone done it, you placed your code on the production server, and found a bug! Now we need to reset the database to square one.</p>
+
+<p><strong>Note:</strong> Your table indexes will not reset to 0</p>
+
+<p>Add the following code to the top of your <code>x_fixtures.py</code> file, when you want to <strong>reset the database</strong>, just change RESET to True.</p>
+
+<pre><code>RESET = False
+
+if RESET:
+    for table in db.tables:
+        # Make sure to cascade, or this will fail 
+        # for tables that have FK references.
+        db[table].truncate(&quot;CASCADE&quot;)    
+    db.commit()
+</code></pre>
+
+<p>Make sure to remove your <code>x_fixtures.py</code> file when you are ready to go live! And compile that app!</p>
+
+            </div>
+        </div>
+
+        <div class="row">
+          
+
+
+
+
+<ul class="pager">
+    <li class="next">
+        <a href="http://localhost:1313/post/newest/">Just another sample post  &nbsp;&raquo;</a>
+    </li>
+</ul>
+
+        </div>
+
+        <div class="row">
+          
+
+<div class="well">
+<em>Categories: </em>
+
+<ul class="list-group">
+
+  <li class="list-group-item"><a href="/categories/web2py">web2py</a></li>
+
+  <li class="list-group-item"><a href="/categories/dev">dev</a></li>
+
+  <li class="list-group-item"><a href="/categories/web">web</a></li>
+
+  <li class="list-group-item"><a href="/categories/python">python</a></li>
+
+</ul>
+
+</div>
+
+        <div class="row">
+
+    </div>
+
+    <hr>

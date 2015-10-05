@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Abhijit&#39;s Blog</title>
+    <link>http://localhost:1313/categories/python/</link>
+    <description>Recent content in Python on Abhijit&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 28 Mar 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Data Fixtures &amp; web2py</title>
+      <link>http://localhost:1313/post/using_data_fixtures_in_Web2Py/</link>
+      <pubDate>Sat, 28 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/using_data_fixtures_in_Web2Py/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://thadeusb.com/weblog/2010/4/21/using_fixtures_in_web2py&#34;&gt;URL&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;So you are ready to deploy your newly finished web2py app, but you don&amp;rsquo;t like the idea of having to manually insert all of this fixture data again!&lt;/p&gt;
+
+&lt;p&gt;Create a new model, and name it &lt;code&gt;x_fixtures.py&lt;/code&gt;. This way it will execute after all of your models.&lt;/p&gt;
+
+&lt;p&gt;Then for every table that you want to pre-populate use the following snippet. I will use an example for the auth_user table to pre-create a test user.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if db(db.auth_user.id &amp;gt; 0).count() == 0:
+    db.auth_user.insert(
+        first_name=&#39;Testers&#39;,
+        last_name=&#39;Inc&#39;,
+        email=&#39;test@user.com&#39;,
+        password=&#39;&amp;lt;include a pre-encrypted password here&amp;gt;&#39;,
+    )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically, if we have no records in the table, insert the defaults! This is probably more useful in situations where you have pre-defined data that can be dynamic, such as a list of status codes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if db(db.status.id &amp;gt; 0).count() == 0:
+   db.status.insert(name=&#39;pending&#39;, kkey=&#39;P&#39;)
+   db.status.insert(name=&#39;processing&#39;, kkey=&#39;R&#39;)
+   db.status.insert(name=&#39;done&#39;, kkey=&#39;D&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can easily keep your data fixtures in a YAML file and load them into the database by using the &lt;code&gt;pyyaml&lt;/code&gt; library.&lt;/p&gt;
+
+&lt;p&gt;Here is the example YAML file for what we just inserted.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;auth_user:
+    - first_name: Testers
+      last_name: Inc
+      email: test@user.com
+      password: &amp;lt;include a pre-encrypted password here&amp;gt;
+status:
+    - name: In-Queue
+      kkey: Q
+    - name: Pending
+      kkey: P
+    - name: Processing
+      kkey: R
+    - name: Done
+      kkey: D
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We just open the file, pass this to &lt;code&gt;pyyaml&lt;/code&gt;, and insert into the database, easy right?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import yaml
+
+data = yaml.load(open(&#39;/path/to/applications/myapp/private/fixtures.yaml&#39;))
+
+for table_name, rows in data:
+    for r in rows:
+        db[table_name].insert(
+            **r
+        )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Video on Generate web2py model by using yaml -&amp;gt; &lt;a href=&#34;http://vimeo.com/10837176&#34;&gt;http://vimeo.com/10837176&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you have gone done it, you placed your code on the production server, and found a bug! Now we need to reset the database to square one.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Your table indexes will not reset to 0&lt;/p&gt;
+
+&lt;p&gt;Add the following code to the top of your &lt;code&gt;x_fixtures.py&lt;/code&gt; file, when you want to &lt;strong&gt;reset the database&lt;/strong&gt;, just change RESET to True.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;RESET = False
+
+if RESET:
+    for table in db.tables:
+        # Make sure to cascade, or this will fail 
+        # for tables that have FK references.
+        db[table].truncate(&amp;quot;CASCADE&amp;quot;)    
+    db.commit()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure to remove your &lt;code&gt;x_fixtures.py&lt;/code&gt; file when you are ready to go live! And compile that app!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

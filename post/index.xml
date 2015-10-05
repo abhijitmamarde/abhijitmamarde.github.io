@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Abhijit&#39;s Blog</title>
+    <link>http://abhijit.mamarde.com/post/</link>
+    <description>Recent content in Posts on Abhijit&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 05 Oct 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://abhijit.mamarde.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Awesome Sublime</title>
+      <link>http://abhijit.mamarde.com/post/sublime_is_awesome/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/post/sublime_is_awesome/</guid>
+      <description>
+
+&lt;h1 id=&#34;sublime-is-awesome:10eb9be6696112aab54c4de2a66b0a98&#34;&gt;Sublime is Awesome&lt;/h1&gt;
+
+&lt;p&gt;I feel sublime text is the most versatile and awesome editor for
+writing code and in general for any type of text (including &lt;code&gt;markdown&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h3 id=&#34;why-i-love-it:10eb9be6696112aab54c4de2a66b0a98&#34;&gt;Why I love it&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Small setup&lt;/code&gt; size ~5 MB.&lt;/li&gt;
+&lt;li&gt;Works seamlessly across &lt;code&gt;different platforms&lt;/code&gt; Windows/Mac/Linux.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;themes&lt;/code&gt; which are easy on eye.&lt;/li&gt;
+&lt;li&gt;Supports &lt;strong&gt;syntax highlighting&lt;/strong&gt; for most of languages &lt;em&gt;out of Box&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Has built in &lt;strong&gt;spell check&lt;/strong&gt; functionality.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Multiple Cursors&lt;/em&gt;. Instead search/replace, select replace multiple occurrences once.&lt;/li&gt;
+&lt;li&gt;Quick searching (based on indexes) of filenames, symbols, contents etc.&lt;/li&gt;
+&lt;li&gt;Rich set of Plugins and Settings.&lt;/li&gt;
+&lt;li&gt;Excellent support for editing &lt;strong&gt;Markdown&lt;/strong&gt; files via &lt;a href=&#34;https://packagecontrol.io/packages/MarkdownEditing&#34;&gt;this&lt;/a&gt; plugin.
+
+&lt;ul&gt;
+&lt;li&gt;Supports even GFM (GitHub flavored Markdown) syntax.&lt;/li&gt;
+&lt;li&gt;Has key-bindings for adding different markdown entities.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;So all-in-all &lt;code&gt;Sublime Text&lt;/code&gt; is a &lt;strong&gt;must tool&lt;/strong&gt; for any developer!&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>http://abhijit.mamarde.com/post/first_post/</link>
+      <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/post/first_post/</guid>
+      <description>
+
+&lt;h2 id=&#34;hey-reader:cd16145a1465e2081ac654311e83eaed&#34;&gt;Hey reader!&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Welcome&lt;/strong&gt; to my blog. I have started this own blogging site finally.
+I usually scribble to understand a concept better. So, you would find my blogs would contain sort of notes for my own or something I really want to share.&lt;/p&gt;
+
+&lt;h4 id=&#34;so-let-s-start:cd16145a1465e2081ac654311e83eaed&#34;&gt;So let&amp;rsquo;s start&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You write you learn, you learn and you evolve!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Created with &amp;lt;3 using&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Sublime Text3 + &lt;a href=&#34;https://packagecontrol.io/packages/MarkdownEditing&#34;&gt;MarkdownEditing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hugo&lt;/li&gt;
+&lt;li&gt;Bootstrap&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print &amp;quot;test&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Keyword &lt;kbd&gt;CTRL&lt;/kbd&gt; &lt;kbd&gt;C&lt;/kbd&gt;&lt;/p&gt;
+
+&lt;p&gt;this is ~~ strike ~~ through&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
