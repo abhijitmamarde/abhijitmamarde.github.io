@@ -59,10 +59,10 @@
                     <a href="/index.html">Home</a>
                 </li>
                 <li>
-                    <a href="/pages/about/">About</a>
+                    <a href="/page/about/">About</a>
                 </li>
                 <li>
-                    <a href="/pages/contact/">Contact</a>
+                    <a href="/page/contact/">Contact</a>
                 </li>
             </ul>
         </div>
@@ -129,6 +129,27 @@ writing code and in general for any type of text (including <code>markdown</code
     </div>
 
     <hr>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost") {
+        alert("Not running disqus on localhost");
+        return;
+    }
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = '';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
 <footer>
 <div class="container">

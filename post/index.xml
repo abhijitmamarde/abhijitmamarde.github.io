@@ -59,13 +59,7 @@ writing code and in general for any type of text (including &lt;code&gt;markdown
 &lt;p&gt;&lt;strong&gt;Welcome&lt;/strong&gt; to my blog. I have started this own blogging site finally.
 I usually scribble to understand a concept better. So, you would find my blogs would contain sort of notes for my own or something I really want to share.&lt;/p&gt;
 
-&lt;h4 id=&#34;so-let-s-start:cd16145a1465e2081ac654311e83eaed&#34;&gt;So let&amp;rsquo;s start&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;You write you learn, you learn and you evolve!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Created with &amp;lt;3 using&lt;/p&gt;
+&lt;h3 id=&#34;created-with-3-using:cd16145a1465e2081ac654311e83eaed&#34;&gt;Created with &amp;lt;3 using&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Sublime Text3 + &lt;a href=&#34;https://packagecontrol.io/packages/MarkdownEditing&#34;&gt;MarkdownEditing&lt;/a&gt;&lt;/li&gt;
@@ -73,16 +67,18 @@ I usually scribble to understand a concept better. So, you would find my blogs w
 &lt;li&gt;Bootstrap&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print &amp;quot;test&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print &amp;quot;Hello World !!!&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Keyword &lt;kbd&gt;CTRL&lt;/kbd&gt; &lt;kbd&gt;C&lt;/kbd&gt;&lt;/p&gt;
+&lt;p&gt;&lt;kbd&gt;CTRL&lt;/kbd&gt;&amp;nbsp;&lt;kbd&gt;ALT&lt;/kbd&gt;&amp;nbsp;&lt;kbd&gt;DEL&lt;/kbd&gt;&lt;/p&gt;
 
-&lt;p&gt;this is ~~ strike ~~ through&lt;/p&gt;
+&lt;h4 id=&#34;so-let-s-start:cd16145a1465e2081ac654311e83eaed&#34;&gt;So let&amp;rsquo;s start&lt;/h4&gt;
 
-&lt;hr /&gt;
-
-&lt;p&gt;Thanks&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You &lt;em&gt;write&lt;/em&gt;, you &lt;em&gt;learn&lt;/em&gt;, &lt;br&gt;
+you learn &lt;em&gt;and&lt;/em&gt; you &lt;em&gt;Evolve&lt;/em&gt;! &lt;br&gt;
+- Abhijit&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
     </item>
     
