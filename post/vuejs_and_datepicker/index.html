@@ -1,0 +1,277 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Using datepicker with Vuejs2 </title>
+
+    <link rel="canonical" href="http://abhijit.mamarde.com/post/vuejs_and_datepicker/">
+    
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+
+    
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    
+    
+    
+
+    <link rel="stylesheet" href="/styles/monokai.css">
+    <script src="/js/highlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Abhijit&#39;s Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/index.html">Home</a>
+                </li>
+                <li>
+                    <a href="/page/about/">About</a>
+                </li>
+                <li>
+                    <a href="/page/contact/">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    
+    
+    
+    <header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Using datepicker with Vuejs2</h1>
+                        <hr class="small">
+                        <span class="subheading">Thu Apr 13, 2017</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+
+<h1 id="using-datepicker-with-vuejs2">Using datepicker with Vuejs2</h1>
+
+<p>Ok, so I am learning/exploring <a href="https://vuejs.org/">Vuejs</a> now a days. It&rsquo;s a great <code>MVVM</code> framework which is light-weight and simple to learn. Simple enough to start <strong>without any background</strong> with other similar Javascript frameworks.</p>
+
+<p>After going through initial code samples and tutorials, I wanted to go for more. At around same time, working on one side project, I needed to integrate <a href="https://github.com/uxsolutions/bootstrap-datepicker">bootstrap-datepicker</a> with Vuejs. Did some search online, but couldn&rsquo;t find any working solution along with Vuejs2. So this is how I managed to do it.</p>
+
+<p>First let&rsquo;s see the code:</p>
+
+<pre><code class="language-javascript">Vue.component('datepicker', {
+
+template: `
+    &lt;div class=&quot;input-group date&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot;&gt;
+    &lt;span class=&quot;input-group-addon&quot;&gt;
+        &lt;i class=&quot;glyphicon glyphicon-calendar&quot;&gt;&lt;/i&gt;
+    &lt;/span&gt;
+    &lt;/div&gt;
+    `,
+
+props: ['updater', 'default'],
+
+mounted: function(){
+
+    //!important, as `this` is not available in the context below
+    var t = this;
+    var dp = $(this.$el.children[0]);
+
+    if(t.default) {
+        store.commit(t.updater, t.default)
+        $(this.$el.children[0]).val(t.default)
+    }
+
+    dp.datepicker({
+        format: date_format.toLowerCase(),  
+        autoclose: true
+    }).on('changeDate', function(e) {
+        store.commit(t.updater, moment(e.date).format(date_format))
+    });
+
+    t.$on('reset', function(date_reset) {
+      // console.log('reset called for:' + t.updater + &quot; date:&quot; + date_reset)
+      store.commit(t.updater, date_reset)
+
+      //to set the datepicker (date in textbox + last set valdate)
+      dp.val(date_reset)
+      dp.data({date: date_reset})
+      dp.datepicker('update')
+    });
+
+},
+
+});
+</code></pre>
+
+<h2 id="details">Details</h2>
+
+<p>The whole idea is, using vuejs, create a custom <code>component</code> so that, we can define any number of <code>datepicker</code> controls. For ex: the code below:</p>
+
+<pre><code class="language-html">&lt;datepicker ref=&quot;startDate&quot; updater=&quot;setStartDate&quot; default=&quot;2016-12-01&quot;&gt;
+&lt;/datepicker&gt;
+</code></pre>
+
+<p>Would simply create the datepicker control with default date populated as mentioned and would set the value in <code>startDate</code> data varaible. The <code>updater</code> mentions which store mutation/method would be called when the date is changed (by clicking in the datepicker event).</p>
+
+<p>Here, an additional event <code>reset</code> is handled, which when emited, would call the require store mutation + setting the text value in date input field.</p>
+
+<p>Here, <code>jquery</code> is used for initializing the datepicker control (<em>Remember:</em> bootstrap-datepicker requires it!) as well as to set the date value in datepicker from vuejs. Say on clicking a button (ex: setting to today&rsquo;s date)</p>
+
+<p>One more point to note here, for selecting the input field in our template, we have used:</p>
+
+<pre><code class="language-jquery">$(this.$el.children[0])
+</code></pre>
+
+<p>Which means, the actual <code>input</code> field which we are initializing as datepicker, is the first children from our template&rsquo;s root element:</p>
+
+<pre><code class="language-html">&lt;!-- root element of template --&gt;
+&lt;div class=&quot;input-group date&quot;&gt;
+    &lt;!-- input: first child under the root element --&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot;&gt;
+    ...
+&lt;/div&gt;
+</code></pre>
+
+<p>Thus, this would obviously change if the template is changed. <em>Keep a note of that!</em></p>
+
+<p>So, that&rsquo;s all about it. I have tried to pen down my first experience with vuejs!</p>
+
+<p>Please do visit to my <a href="https://github.com/abhijitmamarde/vuejs_demos">vuejs-demo</a> repo for the complete working code (and others).</p>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <hr>
+
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<div id="disqus_thread"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost") {
+        
+        return;
+    }
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    
+    var disqus_shortname = 'mamarde';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+<footer>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <ul class="list-inline text-center">
+                <li>
+                    <a href="//twitter.com/AMamarde">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="//www.facebook.com/abhijit.mamarde">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="//github.com/abhijitmamarde">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; <a href="http://abhijit.mamarde.com">abhijit.mamarde.com</a> 2017</p>
+        </div>
+    </div>
+</div>
+</footer>
+
+
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/clean-blog.min.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-97299188-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
+
