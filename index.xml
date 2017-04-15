@@ -5,8 +5,81 @@
     <link>http://abhijit.mamarde.com/index.xml</link>
     <description>Recent content on Abhijit&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 13 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Apr 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://abhijit.mamarde.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using bootstrap-dropdown with Vuejs2</title>
+      <link>http://abhijit.mamarde.com/post/vuejs-and-bootstrap-dropdown/</link>
+      <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/post/vuejs-and-bootstrap-dropdown/</guid>
+      <description>
+
+&lt;p&gt;So while, still exploring/playing with Vuejs, came across another peculiar task - making bootstrap&amp;rsquo;s dropdown work with Vuejs, and here is how I make it finally work! (well atleast for me)&lt;/p&gt;
+
+&lt;p&gt;Though it seems very straight-forward at first - making the dropdown show or hide based on one flag data attribute. With chrome inspector, I could find out the  required css class for same is: &lt;code&gt;open&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;But, the challenge was to hide it (remove the &lt;code&gt;open&lt;/code&gt; class) once user clicks away outside the dropdown menu. This part was really tricky, and while I was trying more and more to get it resolve, I found it&amp;rsquo;s kind of really basic one and thus some-one would have actually fix it before. So on little google, found out this really great  tool - &lt;a href=&#34;https://github.com/simplesmiler/vue-clickaway&#34;&gt;vue-clickaway&lt;/a&gt; which exactly solves this problem!&lt;/p&gt;
+
+&lt;h2 id=&#34;so-how-does-it-work&#34;&gt;So how does it work?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see some code first:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;li class=&amp;quot;dropdown&amp;quot; :class=&amp;quot;{open: showUserDropDown}&amp;quot;&amp;gt;
+    &amp;lt;a class=&amp;quot;dropdown-toggle&amp;quot; v-on-clickaway=&amp;quot;clicked_away_ChangeUserDropdown&amp;quot; @click=&amp;quot;toggleChangeUserDropdown&amp;quot;&amp;gt;Select User &amp;lt;span class=&amp;quot;caret&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;ul class=&amp;quot;dropdown-menu&amp;quot;&amp;gt;
+    &amp;lt;li&amp;gt;&amp;lt;a @click=&amp;quot;user = &#39;user1&#39;&amp;quot;&amp;gt;User 1&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;&amp;lt;a @click=&amp;quot;user = &#39;user2&#39;&amp;quot;&amp;gt;User 2&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;&amp;lt;a @click=&amp;quot;user = &#39;user3&#39;&amp;quot;&amp;gt;User 3&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+&amp;lt;/li&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and in vuejs app:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var vm = new Vue({
+
+    el: &#39;#vue-instance&#39;,
+
+    data: {
+        user: &#39;&#39;,
+        showUserDropDown: false,
+    },
+
+    mixins: [VueClickaway.mixin],
+
+    methods: {
+        toggleChangeUserDropdown() {
+            if(this.showUserDropDown) {
+                this.showUserDropDown = false
+            }
+            else {
+                this.showUserDropDown = true
+            }
+        },
+        
+        clicked_away_ChangeUserDropdown() {
+            this.showUserDropDown = false
+        },
+    }
+
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, &lt;code&gt;showUserDropDown&lt;/code&gt; is the data var which is the actual flag on which we either apply the required css &lt;code&gt;open&lt;/code&gt; class on the dropdown. Clicking on dropdown, &lt;code&gt;toggleChangeUserDropdown&lt;/code&gt; handler is called, which correctly toggles the flag and thus shows or hides the menu.&lt;/p&gt;
+
+&lt;p&gt;But the important part - of hiding the dropdown menu, once anything else is clicked on, is done by &lt;code&gt;v-on-clickaway&lt;/code&gt; directive, which is provided by &lt;code&gt;VueClickaway&lt;/code&gt; mixin.&lt;/p&gt;
+
+&lt;p&gt;Do remember, this &lt;code&gt;v-on-clickaway&lt;/code&gt; is required for every dropdown with different handlers (making the corresponding flag to false).&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! Simple right? But only due to &lt;a href=&#34;https://github.com/simplesmiler/vue-clickaway&#34;&gt;vue-clickaway&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;For complete working code, please refer to my vuejs demo &lt;a href=&#34;https://github.com/abhijitmamarde/vuejs_demos&#34;&gt;repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Please leave the comments if you like this article, or any feedback so that I could improve my knowledge.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Using datepicker with Vuejs2</title>
