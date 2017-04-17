@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Abhijit&#39;s Blog</title>
+    <link>http://abhijit.mamarde.com/tags/</link>
+    <description>Recent content in Tags on Abhijit&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 13 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://abhijit.mamarde.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Datepicker</title>
+      <link>http://abhijit.mamarde.com/tags/datepicker/</link>
+      <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/tags/datepicker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>http://abhijit.mamarde.com/tags/development/</link>
+      <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dropdown</title>
+      <link>http://abhijit.mamarde.com/tags/dropdown/</link>
+      <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/tags/dropdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Notes</title>
+      <link>http://abhijit.mamarde.com/tags/notes/</link>
+      <pubDate>Wed, 01 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/tags/notes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sublime</title>
+      <link>http://abhijit.mamarde.com/tags/sublime/</link>
+      <pubDate>Wed, 01 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/tags/sublime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vuejs</title>
+      <link>http://abhijit.mamarde.com/tags/vuejs/</link>
+      <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/tags/vuejs/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
