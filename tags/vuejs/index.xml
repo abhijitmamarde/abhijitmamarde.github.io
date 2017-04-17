@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vuejs on Abhijit&#39;s Blog</title>
+    <link>http://abhijit.mamarde.com/tags/vuejs/index.xml</link>
+    <description>Recent content in Vuejs on Abhijit&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <atom:link href="http://abhijit.mamarde.com/tags/vuejs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using bootstrap-dropdown with Vuejs2</title>
+      <link>http://abhijit.mamarde.com/post/vuejs-and-bootstrap-dropdown/</link>
+      <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/post/vuejs-and-bootstrap-dropdown/</guid>
+      <description>
+
+&lt;p&gt;So while, still exploring/playing with Vuejs, came across another peculiar task - making bootstrap&amp;rsquo;s dropdown work with Vuejs, and here is how I make it finally work! (well atleast for me)&lt;/p&gt;
+
+&lt;p&gt;Though it seems very straight-forward at first - making the dropdown show or hide based on one flag data attribute. With chrome inspector, I could find out the  required css class for same is: &lt;code&gt;open&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;But, the challenge was to hide it (remove the &lt;code&gt;open&lt;/code&gt; class) once user clicks away outside the dropdown menu. This part was really tricky, and while I was trying more and more to get it resolve, I found it&amp;rsquo;s kind of really basic one and thus some-one would have actually fix it before. So on little google, found out this really great  tool - &lt;a href=&#34;https://github.com/simplesmiler/vue-clickaway&#34;&gt;vue-clickaway&lt;/a&gt; which exactly solves this problem!&lt;/p&gt;
+
+&lt;h2 id=&#34;so-how-does-it-work&#34;&gt;So how does it work?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see some code first:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;li class=&amp;quot;dropdown&amp;quot; :class=&amp;quot;{open: showUserDropDown}&amp;quot;&amp;gt;
+    &amp;lt;a class=&amp;quot;dropdown-toggle&amp;quot; v-on-clickaway=&amp;quot;clicked_away_ChangeUserDropdown&amp;quot; @click=&amp;quot;toggleChangeUserDropdown&amp;quot;&amp;gt;Select User &amp;lt;span class=&amp;quot;caret&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;ul class=&amp;quot;dropdown-menu&amp;quot;&amp;gt;
+    &amp;lt;li&amp;gt;&amp;lt;a @click=&amp;quot;user = &#39;user1&#39;&amp;quot;&amp;gt;User 1&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;&amp;lt;a @click=&amp;quot;user = &#39;user2&#39;&amp;quot;&amp;gt;User 2&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;&amp;lt;a @click=&amp;quot;user = &#39;user3&#39;&amp;quot;&amp;gt;User 3&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+&amp;lt;/li&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and in vuejs app:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var vm = new Vue({
+
+    el: &#39;#vue-instance&#39;,
+
+    data: {
+        user: &#39;&#39;,
+        showUserDropDown: false,
+    },
+
+    mixins: [VueClickaway.mixin],
+
+    methods: {
+        toggleChangeUserDropdown() {
+            if(this.showUserDropDown) {
+                this.showUserDropDown = false
+            }
+            else {
+                this.showUserDropDown = true
+            }
+        },
+        
+        clicked_away_ChangeUserDropdown() {
+            this.showUserDropDown = false
+        },
+    }
+
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, &lt;code&gt;showUserDropDown&lt;/code&gt; is the data var which is the actual flag on which we either apply the required css &lt;code&gt;open&lt;/code&gt; class on the dropdown. Clicking on dropdown, &lt;code&gt;toggleChangeUserDropdown&lt;/code&gt; handler is called, which correctly toggles the flag and thus shows or hides the menu.&lt;/p&gt;
+
+&lt;p&gt;But the important part - of hiding the dropdown menu, once anything else is clicked on, is done by &lt;code&gt;v-on-clickaway&lt;/code&gt; directive, which is provided by &lt;code&gt;VueClickaway&lt;/code&gt; mixin.&lt;/p&gt;
+
+&lt;p&gt;Do remember, this &lt;code&gt;v-on-clickaway&lt;/code&gt; is required for every dropdown with different handlers (making the corresponding flag to false).&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! Simple right? But only due to &lt;a href=&#34;https://github.com/simplesmiler/vue-clickaway&#34;&gt;vue-clickaway&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;For complete working code, please refer to my vuejs demo &lt;a href=&#34;https://github.com/abhijitmamarde/vuejs_demos&#34;&gt;repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Please leave the comments if you like this article, or any feedback so that I could improve my knowledge.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using datepicker with Vuejs2</title>
+      <link>http://abhijit.mamarde.com/post/vuejs_and_datepicker/</link>
+      <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/post/vuejs_and_datepicker/</guid>
+      <description>
+
+&lt;h1 id=&#34;using-datepicker-with-vuejs2&#34;&gt;Using datepicker with Vuejs2&lt;/h1&gt;
+
+&lt;p&gt;Ok, so I am learning/exploring &lt;a href=&#34;https://vuejs.org/&#34;&gt;Vuejs&lt;/a&gt; now a days. It&amp;rsquo;s a great &lt;code&gt;MVVM&lt;/code&gt; framework which is light-weight and simple to learn. Simple enough to start &lt;strong&gt;without any background&lt;/strong&gt; with other similar Javascript frameworks.&lt;/p&gt;
+
+&lt;p&gt;After going through initial code samples and tutorials, I wanted to go for more. At around same time, working on one side project, I needed to integrate &lt;a href=&#34;https://github.com/uxsolutions/bootstrap-datepicker&#34;&gt;bootstrap-datepicker&lt;/a&gt; with Vuejs. Did some search online, but couldn&amp;rsquo;t find any working solution along with Vuejs2. So this is how I managed to do it.&lt;/p&gt;
+
+&lt;p&gt;First let&amp;rsquo;s see the code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Vue.component(&#39;datepicker&#39;, {
+
+template: `
+    &amp;lt;div class=&amp;quot;input-group date&amp;quot;&amp;gt;
+    &amp;lt;input type=&amp;quot;text&amp;quot; class=&amp;quot;form-control&amp;quot;&amp;gt;
+    &amp;lt;span class=&amp;quot;input-group-addon&amp;quot;&amp;gt;
+        &amp;lt;i class=&amp;quot;glyphicon glyphicon-calendar&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+    &amp;lt;/span&amp;gt;
+    &amp;lt;/div&amp;gt;
+    `,
+
+props: [&#39;updater&#39;, &#39;default&#39;],
+
+mounted: function(){
+
+    //!important, as `this` is not available in the context below
+    var t = this;
+    var dp = $(this.$el.children[0]);
+
+    if(t.default) {
+        store.commit(t.updater, t.default)
+        $(this.$el.children[0]).val(t.default)
+    }
+
+    dp.datepicker({
+        format: date_format.toLowerCase(),  
+        autoclose: true
+    }).on(&#39;changeDate&#39;, function(e) {
+        store.commit(t.updater, moment(e.date).format(date_format))
+    });
+
+    t.$on(&#39;reset&#39;, function(date_reset) {
+      // console.log(&#39;reset called for:&#39; + t.updater + &amp;quot; date:&amp;quot; + date_reset)
+      store.commit(t.updater, date_reset)
+
+      //to set the datepicker (date in textbox + last set valdate)
+      dp.val(date_reset)
+      dp.data({date: date_reset})
+      dp.datepicker(&#39;update&#39;)
+    });
+
+},
+
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;details&#34;&gt;Details&lt;/h2&gt;
+
+&lt;p&gt;The whole idea is, using vuejs, create a custom &lt;code&gt;component&lt;/code&gt; so that, we can define any number of &lt;code&gt;datepicker&lt;/code&gt; controls. For ex: the code below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;datepicker ref=&amp;quot;startDate&amp;quot; updater=&amp;quot;setStartDate&amp;quot; default=&amp;quot;2016-12-01&amp;quot;&amp;gt;
+&amp;lt;/datepicker&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Would simply create the datepicker control with default date populated as mentioned and would set the value in &lt;code&gt;startDate&lt;/code&gt; data varaible. The &lt;code&gt;updater&lt;/code&gt; mentions which store mutation/method would be called when the date is changed (by clicking in the datepicker event).&lt;/p&gt;
+
+&lt;p&gt;Here, an additional event &lt;code&gt;reset&lt;/code&gt; is handled, which when emited, would call the require store mutation + setting the text value in date input field.&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code&gt;jquery&lt;/code&gt; is used for initializing the datepicker control (&lt;em&gt;Remember:&lt;/em&gt; bootstrap-datepicker requires it!) as well as to set the date value in datepicker from vuejs. Say on clicking a button (ex: setting to today&amp;rsquo;s date)&lt;/p&gt;
+
+&lt;p&gt;One more point to note here, for selecting the input field in our template, we have used:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jquery&#34;&gt;$(this.$el.children[0])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which means, the actual &lt;code&gt;input&lt;/code&gt; field which we are initializing as datepicker, is the first children from our template&amp;rsquo;s root element:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!-- root element of template --&amp;gt;
+&amp;lt;div class=&amp;quot;input-group date&amp;quot;&amp;gt;
+    &amp;lt;!-- input: first child under the root element --&amp;gt;
+    &amp;lt;input type=&amp;quot;text&amp;quot; class=&amp;quot;form-control&amp;quot;&amp;gt;
+    ...
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thus, this would obviously change if the template is changed. &lt;em&gt;Keep a note of that!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;So, that&amp;rsquo;s all about it. I have tried to pen down my first experience with vuejs!&lt;/p&gt;
+
+&lt;p&gt;Please do visit to my &lt;a href=&#34;https://github.com/abhijitmamarde/vuejs_demos&#34;&gt;vuejs-demo&lt;/a&gt; repo for the complete working code (and others).&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
