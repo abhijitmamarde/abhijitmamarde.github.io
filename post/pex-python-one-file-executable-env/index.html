@@ -1,0 +1,249 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> pex - Python Executable </title>
+
+    <link rel="canonical" href="http://abhijit.mamarde.com/post/pex-python-one-file-executable-env/">
+    
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+
+    
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    
+    
+    
+
+    <link rel="stylesheet" href="/styles/monokai.css">
+    <script src="/js/highlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Abhijit&#39;s Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/index.html">Home</a>
+                </li>
+                <li>
+                    <a href="/page/about/">About</a>
+                </li>
+                <li>
+                    <a href="/page/contact/">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    
+    
+    
+    <header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>pex - Python Executable</h1>
+                        <hr class="small">
+                        <span class="subheading">Tue Jan 7, 2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+
+<h1 id="what-is-pex">What is <code>pex</code></h1>
+
+<p><a href="https://github.com/pantsbuild/pex">pex</a> is a smart utility to create the single file independent Python environment, with which you can run Python based programs just like it is a executable program.</p>
+
+<h1 id="creating-pex">Creating <code>pex</code></h1>
+
+<p>to create an environment with <code>pex</code>:</p>
+
+<pre><code>$ pex requests -o myenv.pex
+</code></pre>
+
+<ul>
+<li>the list of dependencies here is just <code>requests</code> package</li>
+<li>can add more than one dependencies like below:
+<code>bash
+$ pex requests flask etc -o myenv.pex
+</code></li>
+
+<li><p>to pin the package to a particular version use:</p>
+
+<pre><code class="language-bash">$ pex 'flask==1.1.1' -o myenv.pex
+# or
+$ pex 'flask&lt;1.1.1' -o myenv.pex
+</code></pre></li>
+
+<li><p>can create the env with the dependencies as prescribed in requirements file as below:</p>
+
+<pre><code class="language-bash">$ pex -r requirements.txt -o myenv.pex
+</code></pre></li>
+</ul>
+
+<h1 id="running-a-pex">Running a <code>pex</code></h1>
+
+<p>to run the program with <code>pex</code>:</p>
+
+<pre><code class="language-bash">$ ./myenv.pex hello.py 
+</code></pre>
+
+<ul>
+<li><p>this way your program will work as if you have activated the environment, and running your program with python as below:</p>
+
+<pre><code class="language-bash"># after activating the env
+$ python hello.py
+</code></pre></li>
+</ul>
+
+<p>Now this would suffice for most of scenarios, but for few, we would need to use/run with some different executable (not python as in this case).</p>
+
+<p>For example, running <a href="http://flask.palletsprojects.com/">flask</a> applications using <code>flask</code> command, or running with <a href="https://gunicorn.org/">gunicorn</a>, <a href="https://www.uvicorn.org/">uvicorn</a> etc.</p>
+
+<p>In such cases, need to change the <code>PEX_SCRIPT</code> as done in below example for running the web app with <code>gunicorn</code>.</p>
+
+<pre><code class="language-bash">$ PEX_SCRIPT=gunicorn ./httpx.pex -w 2 fastapi_demo:app -k uvicorn.workers.UvicornWorker
+</code></pre>
+
+<h1 id="upcoming">Upcoming&hellip;</h1>
+
+<p>Since <code>pex</code> essentially makes an one file - &ldquo;zipped&rdquo; python environment, there are many more useful ways and scenarios in which this tool would be very helpful.</p>
+
+<p>Will add more ways of using this tool as I <em>explore it more</em>.</p>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <hr>
+
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<div id="disqus_thread"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost") {
+        
+        return;
+    }
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    
+    var disqus_shortname = 'mamarde';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+<footer>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <ul class="list-inline text-center">
+                <li>
+                    <a href="//twitter.com/AMamarde">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="//www.facebook.com/abhijit.mamarde">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="//github.com/abhijitmamarde">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; <a href="http://abhijit.mamarde.com">abhijit.mamarde.com</a> 2020</p>
+        </div>
+    </div>
+</div>
+</footer>
+
+
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/clean-blog.min.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-97299188-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
+

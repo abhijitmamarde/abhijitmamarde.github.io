@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://abhijit.mamarde.com/post/pex-python-one-file-executable-env/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://abhijit.mamarde.com/post/vuejs-and-bootstrap-dropdown/</loc>
     <lastmod>2017-04-15T00:00:00+00:00</lastmod>
   </url>
@@ -24,7 +29,7 @@
   
   <url>
     <loc>http://abhijit.mamarde.com/</loc>
-    <lastmod>2017-04-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -56,6 +61,12 @@
   </url>
   
   <url>
+    <loc>http://abhijit.mamarde.com/tags/executable/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://abhijit.mamarde.com/tags/notes/</loc>
     <lastmod>2017-02-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -68,7 +79,13 @@
   
   <url>
     <loc>http://abhijit.mamarde.com/post/</loc>
-    <lastmod>2017-04-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://abhijit.mamarde.com/tags/python/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -81,6 +98,18 @@
   <url>
     <loc>http://abhijit.mamarde.com/tags/</loc>
     <lastmod>2017-04-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://abhijit.mamarde.com/tags/tool/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://abhijit.mamarde.com/tags/virtualenv/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

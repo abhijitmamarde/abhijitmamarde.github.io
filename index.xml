@@ -5,10 +5,21 @@
     <link>http://abhijit.mamarde.com/</link>
     <description>Recent content on Abhijit&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 15 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://abhijit.mamarde.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pex - Python Executable</title>
+      <link>http://abhijit.mamarde.com/post/pex-python-one-file-executable-env/</link>
+      <pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://abhijit.mamarde.com/post/pex-python-one-file-executable-env/</guid>
+      <description>What is pex pex is a smart utility to create the single file independent Python environment, with which you can run Python based programs just like it is a executable program.
+Creating pex to create an environment with pex:
+$ pex requests -o myenv.pex   the list of dependencies here is just requests package can add more than one dependencies like below: bash $ pex requests flask etc -o myenv.</description>
+    </item>
     
     <item>
       <title>Using bootstrap-dropdown with Vuejs2</title>
