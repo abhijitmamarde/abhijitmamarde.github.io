@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>http://abhijit.mamarde.com/post/vuejs-and-bootstrap-dropdown/</loc>
@@ -29,6 +30,11 @@
   
   <url>
     <loc>http://abhijit.mamarde.com/page/about/</loc>
+  </url>
+  
+  <url>
+    <loc>http://abhijit.mamarde.com/categories/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -74,6 +80,7 @@
   
   <url>
     <loc>http://abhijit.mamarde.com/tags/</loc>
+    <lastmod>2017-04-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

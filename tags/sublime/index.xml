@@ -2,10 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sublime on Abhijit&#39;s Blog</title>
-    <link>http://abhijit.mamarde.com/tags/sublime/index.xml</link>
+    <link>http://abhijit.mamarde.com/tags/sublime/</link>
     <description>Recent content in Sublime on Abhijit&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <atom:link href="http://abhijit.mamarde.com/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Feb 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://abhijit.mamarde.com/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Awesome Sublime</title>
@@ -13,36 +16,8 @@
       <pubDate>Wed, 01 Feb 2017 00:00:00 +0000</pubDate>
       
       <guid>http://abhijit.mamarde.com/post/sublime_is_awesome/</guid>
-      <description>
-
-&lt;h1 id=&#34;sublime-is-awesome&#34;&gt;Sublime is Awesome&lt;/h1&gt;
-
-&lt;p&gt;I feel sublime text is the most versatile and awesome editor for
-writing code and in general for any type of text (including &lt;code&gt;markdown&lt;/code&gt;).&lt;/p&gt;
-
-&lt;h3 id=&#34;why-i-love-it&#34;&gt;Why I love it&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;Small setup&lt;/code&gt; size ~5 MB.&lt;/li&gt;
-&lt;li&gt;Works seamlessly across &lt;code&gt;different platforms&lt;/code&gt; Windows/Mac/Linux.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;themes&lt;/code&gt; which are easy on eye.&lt;/li&gt;
-&lt;li&gt;Supports &lt;strong&gt;syntax highlighting&lt;/strong&gt; for most of languages &lt;em&gt;out of Box&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Has built in &lt;strong&gt;spell check&lt;/strong&gt; functionality.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Multiple Cursors&lt;/em&gt;. Instead search/replace, select replace multiple occurrences once.&lt;/li&gt;
-&lt;li&gt;Quick searching (based on indexes) of filenames, symbols, contents etc.&lt;/li&gt;
-&lt;li&gt;Rich set of Plugins and Settings.&lt;/li&gt;
-&lt;li&gt;Excellent support for editing &lt;strong&gt;Markdown&lt;/strong&gt; files via &lt;a href=&#34;https://packagecontrol.io/packages/MarkdownEditing&#34;&gt;this&lt;/a&gt; plugin.
-
-&lt;ul&gt;
-&lt;li&gt;Supports even GFM (GitHub flavored Markdown) syntax.&lt;/li&gt;
-&lt;li&gt;Has key-bindings for adding different markdown entities.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;So all-in-all &lt;code&gt;Sublime Text&lt;/code&gt; is a &lt;strong&gt;must tool&lt;/strong&gt; for any developer!&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Sublime is Awesome I feel sublime text is the most versatile and awesome editor for writing code and in general for any type of text (including markdown).
+Why I love it  Small setup size ~5 MB. Works seamlessly across different platforms Windows/Mac/Linux. themes which are easy on eye. Supports syntax highlighting for most of languages out of Box. Has built in spell check functionality. Multiple Cursors. Instead search/replace, select replace multiple occurrences once.</description>
     </item>
     
   </channel>
