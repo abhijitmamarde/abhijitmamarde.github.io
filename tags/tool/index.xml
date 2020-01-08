@@ -18,7 +18,8 @@
       <guid>http://abhijit.mamarde.com/post/pex-python-one-file-executable-env/</guid>
       <description>What is pex pex is a smart utility to create the single file independent Python environment, with which you can run Python based programs just like it is a executable program.
 Creating pex to create an environment with pex:
-$ pex requests -o myenv.pex   the list of dependencies here is just requests package can add more than one dependencies like below: bash $ pex requests flask etc -o myenv.</description>
+$ pex requests -o myenv.pex   the list of dependencies here is just requests package can add more than one dependencies like below:
+# etc below is just the placeholder!</description>
     </item>
     
   </channel>
